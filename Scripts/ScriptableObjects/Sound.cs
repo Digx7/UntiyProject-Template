@@ -18,11 +18,40 @@ public class Sound : ScriptableObject
     [HideInInspector]
     public AudioSource source;
 
+    public void Play(){
+        if(source != null && !isPlaying()){
+            source.Play();
+        }
+    }
+
     public void Stop()
     {
         if (source != null)
         {
             source.Stop();
+        }
+    }
+
+    public void Setup(AudioSource audioSource){
+        if (source != null){
+            source = audioSource;
+            source.clip = clip;
+            source.volume = volume;
+            source.pitch = pitch;
+            source.loop = loop;
+            source.playOnAwake = playOnAwake;
+        }
+    }
+
+    public bool isPlaying(){
+        if (source != null)
+            return source.isPlaying;
+        else return false;
+    }
+
+    public void TryTearDown(){
+        if (source != null && !source.isPlaying){
+            Destroy(source.gameObject);
         }
     }
 

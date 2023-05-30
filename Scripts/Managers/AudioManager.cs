@@ -5,7 +5,23 @@ using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    public List<Sound> sounds = new List<Sound>();
+    public AudioRequestChannelSO sfxChannel;
+    public AudioRequestChannelSO musicChannel;
+
+    public List<Sound> activeSfxs;
+    public List<Sound> activeSongs;
+
+    public GameObject AudioSourcePrefab;
+
+    private void OnEnable(){
+        musicChannel.OnRequestAudio += ((sound) => onReciveMusicRequest(sound));
+        sfxChannel.OnRequestAudio += ((sound) => onReciveSfxRequest(sound));
+    }
+
+    private void OnDisable(){
+        musicChannel.OnRequestAudio -= ((sound) => onReciveMusicRequest(sound));
+        sfxChannel.OnRequestAudio -= ((sound) => onReciveSfxRequest(sound));
+    }
 
     protected override void Awake()
     {
@@ -15,18 +31,25 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Initialize()
     {
-        foreach (Sound sound in sounds)
-        {
-            sound.source = gameObject.AddComponent<AudioSource>();
-            sound.source.clip = sound.clip;
-            sound.source.volume = sound.volume;
-            sound.source.pitch = sound.pitch;
-            sound.source.loop = sound.loop;
-            sound.source.playOnAwake = sound.playOnAwake;
+        
+    }
 
-            if (sound.playOnAwake) Play(sound.name);
-            if (sound.fadeInOnAwake) FadeIn(sound.name, 5.0f);
-        }
+    private void onReciveSfxRequest(Sound sound){
+        activeSfxs.Add(LoadSound(sound));
+        activeSfxs[activeSfxs.Count - 1].Play();
+    }
+
+    private void onReciveMusicRequest(Sound sound){
+        activeSongs.Add(LoadSound(sound));
+        FadeIn(activeSongs[activeSongs.Count - 1], 3.0f);
+    }
+
+    private Sound LoadSound(Sound sound){
+        GameObject gameObject = Instantiate(AudioSourcePrefab, this.transform);
+
+        sound.Setup(gameObject.GetComponent<AudioSource>());
+
+        return sound;
     }
 
     private IEnumerator FadeIn(AudioSource source, float seconds)
@@ -72,80 +95,26 @@ public class AudioManager : Singleton<AudioManager>
         source.volume = 0.0f;
     }
 
-    public void Play(string soundName)
-    {
-        Sound sound = sounds.Find(item => item.name == soundName);
-        if (sound == null)
-        {
-            Debug.LogWarning("Sound " + soundName + " not found!");
-            return;
-        }
-
-        sound.source.Play();
-        if (sound.source.isPlaying)
-        {
-            print("now playing " + sound.name);
+    private IEnumerator UnloadStaleSounds(){
+        while(1 == 1){
+            foreach (Transform item in transform)
+            {
+                
+            }
         }
     }
 
-    public void PlayOneShot(string soundName)
+    public void FadeIn(Sound sound, float seconds)
     {
-        Sound sound = sounds.Find(item => item.name == soundName);
-        if (sound == null)
-        {
-            Debug.LogWarning("Sound " + soundName + " not found!");
-            return;
-        }
-        print("Playing once " + sound.name);
-        sound.source.PlayOneShot(sound.clip);
-    }
-
-    public void Stop(string soundName)
-    {
-        Sound sound = sounds.Find(item => item.name == soundName);
-        if (sound == null)
-        {
-            Debug.LogWarning("Sound " + soundName + " not found!");
-            return;
-        }
-
-        sound.Stop();
-    }
-
-    public void FadeIn(string soundName, float seconds)
-    {
-        Sound sound = sounds.Find(item => item.name == soundName);
-        if (sound == null)
-        {
-            Debug.LogWarning("Sound " + soundName + " not found!");
-            return;
-        }
-
         StartCoroutine(FadeIn(sound.source, seconds));
-        sound.source.Play();
-        if (sound.source.isPlaying)
-        {
-            print("now fading in " + sound.name);
-        }
     }
 
-    public void FadeOut(string soundName, float seconds)
+    public void FadeOut(Sound sound, float seconds)
     {
-        Sound sound = sounds.Find(item => item.name == soundName);
-        if (sound == null)
-        {
-            Debug.LogWarning("Sound " + soundName + " not found!");
-            return;
-        }
-
         StartCoroutine(FadeOut(sound.source, seconds));
-        if (sound.source.isPlaying)
-        {
-            print("now fading out " + sound.name);
-        }
     }
  
-    public void CrossFade(string soundToFadeOut, string soundToFadeIn, float seconds)
+    public void CrossFade(Sound soundToFadeOut, Sound soundToFadeIn, float seconds)
     {
         FadeOut(soundToFadeOut, seconds);
         FadeIn(soundToFadeIn, seconds);
