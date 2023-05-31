@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Music Fragment
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: c25c951bc304f64468ee4d2481373a59, type: 3}
+  mixerGroup: {fileID: 0}
   volume: 1
   pitch: 1
-  loop: 0
+  loop: 1
   playOnAwake: 1
   fadeInOnAwake: 0
   source: {fileID: 0}

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Music Do I Wanna Know
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: a673fe6b52e899c429b255874aef15e3, type: 3}
+  mixerGroup: {fileID: 0}
   volume: 1
   pitch: 1
-  loop: 0
+  loop: 1
   playOnAwake: 0
   fadeInOnAwake: 0
   source: {fileID: 0}

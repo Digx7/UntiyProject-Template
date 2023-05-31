@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Audio")]
 public class Sound : ScriptableObject
 {
     //public string name;
     public AudioClip clip;
+    public AudioMixerGroup mixerGroup; 
     [Range(0f, 1f)]
     public float volume = 1f;
     [Range(0.1f, 3f)]
@@ -29,17 +31,6 @@ public class Sound : ScriptableObject
         if (source != null)
         {
             source.Stop();
-        }
-    }
-
-    public void Setup(AudioSource audioSource){
-        if (source != null){
-            source = audioSource;
-            source.clip = clip;
-            source.volume = volume;
-            source.pitch = pitch;
-            source.loop = loop;
-            source.playOnAwake = playOnAwake;
         }
     }
 
