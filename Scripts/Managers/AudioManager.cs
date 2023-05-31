@@ -7,20 +7,21 @@ public class AudioManager : Singleton<AudioManager>
 {
     public AudioRequestChannelSO sfxChannel;
     public AudioRequestChannelSO musicChannel;
-
-    public List<Sound> activeSfxs;
-    public List<Sound> activeSongs;
-
     public GameObject AudioSourcePrefab;
 
-    private void OnEnable(){
-        musicChannel.OnRequestAudio += ((sound) => onReciveMusicRequest(sound));
-        sfxChannel.OnRequestAudio += ((sound) => onReciveSfxRequest(sound));
+    private List<Sound> activeSfxs;
+    private List<Sound> activeSongs;
+
+    private void OnEnable()
+    {
+        musicChannel.OnRequestAudio += ((sound) => OnReciveMusicRequest(sound));
+        sfxChannel.OnRequestAudio += ((sound) => OnReciveSfxRequest(sound));
     }
 
-    private void OnDisable(){
-        musicChannel.OnRequestAudio -= ((sound) => onReciveMusicRequest(sound));
-        sfxChannel.OnRequestAudio -= ((sound) => onReciveSfxRequest(sound));
+    private void OnDisable()
+    {
+        musicChannel.OnRequestAudio -= ((sound) => OnReciveMusicRequest(sound));
+        sfxChannel.OnRequestAudio -= ((sound) => OnReciveSfxRequest(sound));
     }
 
     protected override void Awake()
@@ -31,26 +32,106 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Initialize()
     {
+        activeSfxs = new List<Sound>();
+        activeSongs = new List<Sound>();
         
+        StartCoroutine(UnloadStaleSounds());
     }
 
-    private void onReciveSfxRequest(Sound sound){
+    // Listenter Methods ------------------------
+
+    private void OnReciveSfxRequest(Sound sound)
+    {
+        Debug.Log("AudioManager: Recived Sfx Request for " + sound.clip.name);
         activeSfxs.Add(LoadSound(sound));
-        activeSfxs[activeSfxs.Count - 1].Play();
+        activeSfxs[activeSfxs.Count-1].Play();
     }
 
-    private void onReciveMusicRequest(Sound sound){
-        activeSongs.Add(LoadSound(sound));
-        FadeIn(activeSongs[activeSongs.Count - 1], 3.0f);
+    private void OnReciveMusicRequest(Sound sound)
+    {
+        Debug.Log("AudioManager: Recived music request for " + sound.clip.name);
+        // Checks if the new song is the exact same as the currently
+        // playing one.  If so don't load or play it
+        List<Sound> allCurrentlyActiveSongs = GetAllActiveSongs();
+        if(IsSongLikeThisActive(sound))
+        {
+            Debug.Log("AudioManager: Ignoring request since there" +
+            " is an active song just like it");
+            return;
+        }
+
+        Sound currentlyActiveSong = GetCurrentlyActiveSong();
+        Sound newSong = LoadSound(sound);
+        activeSongs.Add(newSong);
+
+        if(currentlyActiveSong != null)
+        {
+            CrossFade(currentlyActiveSong, newSong, 5.0f);
+        }
+        else
+        {
+            FadeIn( newSong , 5.0f );
+        }
     }
 
-    private Sound LoadSound(Sound sound){
+    // Helper Methods ----------------------
+
+    private Sound LoadSound(Sound sound)
+    {
         GameObject gameObject = Instantiate(AudioSourcePrefab, this.transform);
 
-        sound.Setup(gameObject.GetComponent<AudioSource>());
+        sound.source = gameObject.GetComponent<AudioSource>();
+        sound.source.clip = sound.clip;
+        sound.source.outputAudioMixerGroup = sound.mixerGroup;
+        sound.source.volume = sound.volume;
+        sound.source.pitch = sound.pitch;
+        sound.source.loop = sound.loop;
+
+        Debug.Log("AudioManager: Loaded sound " + sound.clip.name);
 
         return sound;
     }
+
+    private Sound GetCurrentlyActiveSong(){
+        foreach (Sound song in activeSongs)
+        {
+            if(song.isPlaying()) return song;
+        }
+        return null;
+    }
+
+    private List<Sound> GetAllActiveSongs(){
+        List<Sound> allActiveSongs = 
+            activeSongs.FindAll(item => item.isPlaying());
+
+        return allActiveSongs;
+    }
+
+    private bool IsSongLikeThisActive(Sound sound){
+        Sound result =
+            activeSongs.Find(item => item.clip.name == sound.clip.name);
+
+        if(result != null) return true;
+        return false;
+    }
+
+    private void DestroyChildrenWithCondition()
+    {
+        // Iterate over all children
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Transform child = transform.GetChild(i);
+
+            // Check the condition
+            if (child.GetComponent<AudioSource>().isPlaying == false)
+            {
+                // Destroy the child object
+                Destroy(child.gameObject); // or DestroyImmediate(child.gameObject) if needed
+            }
+        }
+    }
+
+    // IEnumerators ---------------------------------------
 
     private IEnumerator FadeIn(AudioSource source, float seconds)
     {
@@ -62,6 +143,8 @@ public class AudioManager : Singleton<AudioManager>
         float targetVolume = source.volume;
         float currentTime = 0f;
         source.volume = 0.0f;
+
+        source.Play();
 
         while (source.volume < targetVolume)
         {
@@ -93,29 +176,43 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         source.volume = 0.0f;
+
+        source.Stop();
     }
 
-    private IEnumerator UnloadStaleSounds(){
+    private IEnumerator UnloadStaleSounds()
+    {
         while(1 == 1){
-            foreach (Transform item in transform)
-            {
-                
-            }
+            activeSfxs.RemoveAll(item => !item.isPlaying());
+
+            activeSongs.RemoveAll(item => !item.isPlaying());
+
+            DestroyChildrenWithCondition();
+
+            Debug.Log("AudioManager: unloaded stale sounds");
+
+            yield return new WaitForSeconds(5);
         }
     }
 
-    public void FadeIn(Sound sound, float seconds)
+    // FADE Methods --------------------------------
+
+    private void FadeIn(Sound sound, float seconds)
     {
+        Debug.Log("AudioManager: Starting to fade in song: " + sound.clip.name);
         StartCoroutine(FadeIn(sound.source, seconds));
     }
 
-    public void FadeOut(Sound sound, float seconds)
+    private void FadeOut(Sound sound, float seconds)
     {
+        Debug.Log("AudioManager: Starting to fade out song: " + sound.clip.name);
         StartCoroutine(FadeOut(sound.source, seconds));
     }
  
-    public void CrossFade(Sound soundToFadeOut, Sound soundToFadeIn, float seconds)
+    private void CrossFade(Sound soundToFadeOut, Sound soundToFadeIn, float seconds)
     {
+        Debug.Log("AudioManager: CrossFading between songs: " + soundToFadeOut.clip.name + 
+        " -> " + soundToFadeIn.clip.name);
         FadeOut(soundToFadeOut, seconds);
         FadeIn(soundToFadeIn, seconds);
     }

@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b658ca11012eab344b5bcb78a976014b, type: 3}
-  m_Name: Music Do I Wanna Know
+  m_Name: Sfx UI2
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: a673fe6b52e899c429b255874aef15e3, type: 3}
-  mixerGroup: {fileID: -1334037675926372455, guid: 41110ee7c02ce5641ad7891838cb4de9, type: 2}
+  clip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  mixerGroup: {fileID: -53779055774622543, guid: 41110ee7c02ce5641ad7891838cb4de9, type: 2}
   volume: 1
   pitch: 1
-  loop: 1
-  playOnAwake: 0
-  fadeInOnAwake: 0
+  loop: 0
   source: {fileID: 0}
