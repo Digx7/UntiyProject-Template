@@ -34,6 +34,7 @@ public class MainMenuManager : Singleton<MainMenuManager>
     {
         currentScreen = findScreenByState(currentState);
         currentScreen.rootObject.SetActive(true);
+        Log("Initialized");
     }
 
     public void OnSelect (string newState)
@@ -43,11 +44,13 @@ public class MainMenuManager : Singleton<MainMenuManager>
 
     public void OnSelect(MainMenuStates newState)
     {
+        Log("Going to new state: " + newState);
         OnChangeToState(newState, findScreenByState(newState).selectedButtonOnStateEnter);
     }
 
     public void OnBack()
     {
+        Log("Went back to state: " + currentScreen.exitToState);
         OnChangeToState(currentScreen.exitToState, currentScreen.selectedButtonOnStateExit);
     }
 

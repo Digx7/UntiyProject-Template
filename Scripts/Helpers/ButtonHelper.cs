@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Button))]
-public class ButtonHelper : MonoBehaviour
+public class ButtonHelper : CustomMonoBehaviorWrapper
 {
     private EventSystem eventSystem;
 
@@ -17,7 +17,7 @@ public class ButtonHelper : MonoBehaviour
     public void OnSelect()
     {
         if(eventSystem == null) return;
-        
+
         eventSystem.SetSelectedGameObject(null);
         eventSystem.SetSelectedGameObject(this.gameObject);
     }
