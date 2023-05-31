@@ -42,20 +42,20 @@ public class AudioManager : Singleton<AudioManager>
 
     private void OnReciveSfxRequest(Sound sound)
     {
-        Debug.Log("AudioManager: Recived Sfx Request for " + sound.clip.name);
+        Log("Recived Sfx Request for " + sound.clip.name);
         activeSfxs.Add(LoadSound(sound));
         activeSfxs[activeSfxs.Count-1].Play();
     }
 
     private void OnReciveMusicRequest(Sound sound)
     {
-        Debug.Log("AudioManager: Recived music request for " + sound.clip.name);
+        Log("Recived music request for " + sound.clip.name);
         // Checks if the new song is the exact same as the currently
         // playing one.  If so don't load or play it
         List<Sound> allCurrentlyActiveSongs = GetAllActiveSongs();
         if(IsSongLikeThisActive(sound))
         {
-            Debug.Log("AudioManager: Ignoring request since there" +
+            Log("Ignoring request since there" +
             " is an active song just like it");
             return;
         }
@@ -87,7 +87,7 @@ public class AudioManager : Singleton<AudioManager>
         sound.source.pitch = sound.pitch;
         sound.source.loop = sound.loop;
 
-        Debug.Log("AudioManager: Loaded sound " + sound.clip.name);
+        Log("Loaded sound " + sound.clip.name);
 
         return sound;
     }
@@ -189,7 +189,7 @@ public class AudioManager : Singleton<AudioManager>
 
             DestroyChildrenWithCondition();
 
-            Debug.Log("AudioManager: unloaded stale sounds");
+            Log("unloaded stale sounds");
 
             yield return new WaitForSeconds(5);
         }
@@ -199,19 +199,19 @@ public class AudioManager : Singleton<AudioManager>
 
     private void FadeIn(Sound sound, float seconds)
     {
-        Debug.Log("AudioManager: Starting to fade in song: " + sound.clip.name);
+        Log("Starting to fade in song: " + sound.clip.name);
         StartCoroutine(FadeIn(sound.source, seconds));
     }
 
     private void FadeOut(Sound sound, float seconds)
     {
-        Debug.Log("AudioManager: Starting to fade out song: " + sound.clip.name);
+        Log("Starting to fade out song: " + sound.clip.name);
         StartCoroutine(FadeOut(sound.source, seconds));
     }
  
     private void CrossFade(Sound soundToFadeOut, Sound soundToFadeIn, float seconds)
     {
-        Debug.Log("AudioManager: CrossFading between songs: " + soundToFadeOut.clip.name + 
+        Log("CrossFading between songs: " + soundToFadeOut.clip.name + 
         " -> " + soundToFadeIn.clip.name);
         FadeOut(soundToFadeOut, seconds);
         FadeIn(soundToFadeIn, seconds);
