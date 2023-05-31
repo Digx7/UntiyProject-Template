@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8fae0cf7d242a94aa5858d46333f680, type: 3}
-  m_Name: SFX_AudioChannel
+  m_Script: {fileID: 11500000, guid: df3421db7e2c7fa489b19e7d4392b6dd, type: 3}
+  m_Name: Music_RequestChannel
   m_EditorClassIdentifier: 
