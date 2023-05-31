@@ -823,6 +823,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yes Button
       objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f3a92ecfa4b4f044a136122d0dcdee7, type: 2}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RaiseEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: VoidEventChannelSO, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8471963579414699288, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
       propertyPath: m_text
       value: Yes
@@ -2663,6 +2691,38 @@ PrefabInstance:
     - target: {fileID: 8471963578755998115, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
       propertyPath: m_Name
       value: Continue Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ae2ed8b32700ef43987fada6ceedac0, type: 2}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RaiseEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SceneRequestChannel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: bfded8d3432a0704f96953282ee9ea69, type: 2}
+    - target: {fileID: 8471963578755998124, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: SceneSO, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8471963579414699288, guid: f9e1efc74e1f0ed4ab4cfe6248bc6a43, type: 3}
       propertyPath: m_text

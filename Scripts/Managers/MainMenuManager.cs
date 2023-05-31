@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class MainMenuManager : Singleton<MainMenuManager>
+public class MainMenuManager : CustomMonoBehaviorWrapper
 {
 
     public MainMenuStates currentState;
@@ -24,9 +24,8 @@ public class MainMenuManager : Singleton<MainMenuManager>
     
     private MenuScreen currentScreen;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         Initialize();
     }
 
