@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public enum GameState
-    {
-        MainMenu, Gameplay, WinScreen, LoseScreen
-    }
-    
-    public GameState currentGameState {get; private set;}
+    [SerializeField] private GameStateChannelSO gameStateChannel;
 
-    public void setCurrentGameState(GameState newState)
+    private void OnEnable()
     {
-        currentGameState = newState;
+        gameStateChannel.OnEventRaised += (gameState) => gameState.OnState.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        gameStateChannel.OnEventRaised -= (gameState) => gameState.OnState.Invoke();
     }
 }

@@ -207,6 +207,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         Log("Starting to fade out song: " + sound.clip.name);
         StartCoroutine(FadeOut(sound.source, seconds));
+        activeSongs.Remove(sound);
     }
  
     private void CrossFade(Sound soundToFadeOut, Sound soundToFadeIn, float seconds)
