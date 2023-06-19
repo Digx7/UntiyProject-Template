@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowLogging: 0
+  gameStateChannel: {fileID: 11400000, guid: ee050e35f45364549936232ef898a1c3, type: 2}

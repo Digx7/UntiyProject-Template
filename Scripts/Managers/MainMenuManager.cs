@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using TMPro;
 
 public class MainMenuManager : CustomMonoBehaviorWrapper
 {
 
     public MainMenuStates currentState;
+    [SerializeField] private StringEventChannelSO mainMenuRequestChannelSO;
+    [SerializeField] private TextMeshProUGUI buildTMP;
+    [SerializeField] private TextMeshProUGUI legalTMP;
 
     public List<MenuScreen> menuScreens;
     private MenuScreen findScreenByState(MainMenuStates state)
@@ -29,10 +33,24 @@ public class MainMenuManager : CustomMonoBehaviorWrapper
         Initialize();
     }
 
+    private void OnEnable()
+    {
+        mainMenuRequestChannelSO.OnEventRaised += (state) => OnSelect(state);
+    }
+
+    private void OnDisable()
+    {
+        mainMenuRequestChannelSO.OnEventRaised -= (state) => OnSelect(state);
+    }
+
     private void Initialize()
     {
         currentScreen = findScreenByState(currentState);
         currentScreen.rootObject.SetActive(true);
+
+        buildTMP.text = Application.version;
+        legalTMP.text = "Made by " +  Application.companyName;
+
         Log("Initialized");
     }
 
@@ -86,5 +104,5 @@ public struct MenuScreen
 
 public enum MainMenuStates
     {
-        MainMenu = 0, NewGame = 1, LoadGame = 2, Options = 3, Credits = 4, Quit = 5
+        None = -1, MainMenu = 0, NewGame = 1, LoadGame = 2, Options = 3, Credits = 4, Quit = 5
     }

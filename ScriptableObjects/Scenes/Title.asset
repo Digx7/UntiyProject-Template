@@ -19,4 +19,16 @@ MonoBehaviour:
   loadType: 0
   OnSceneStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 7a4c3cf42a95fab44bce8e62213e95fd, type: 2}
+        m_TargetAssemblyTypeName: AudioRequestChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 3ad77a9337ad9f84699c910697b0aa8d, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Sound, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
