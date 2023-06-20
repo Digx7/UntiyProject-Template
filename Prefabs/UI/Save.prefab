@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 3792075756457758103}
   - component: {fileID: 6525706971030239797}
   - component: {fileID: 3298009743506304145}
-  - component: {fileID: 2807302482562215690}
   - component: {fileID: 7570440401825411943}
+  - component: {fileID: 60750931323768445}
   m_Layer: 5
   m_Name: Save
   m_TagString: Untagged
@@ -225,19 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f4235b887f86f4293f79a708215617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2807302482562215690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8199525314429552010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6028d315c5e09fa448409181503872bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLogging: 0
 --- !u!114 &7570440401825411943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,8 +254,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 2807302482562215690}
-          m_TargetAssemblyTypeName: ButtonHelper, Assembly-CSharp
+        - m_Target: {fileID: 60750931323768445}
+          m_TargetAssemblyTypeName: UISelectionHelper, Assembly-CSharp
           m_MethodName: OnSelect
           m_Mode: 1
           m_Arguments:
@@ -279,6 +266,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &60750931323768445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199525314429552010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6028d315c5e09fa448409181503872bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLogging: 0
+  objectToSetAsSelected: {fileID: 8199525314429552010}
+  selectedObjectRequestChannel: {fileID: 11400000, guid: ef2bbe5fd69021f45916f32f8bcc6744, type: 2}
 --- !u!1001 &5125707892247867248
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -189,6 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6028d315c5e09fa448409181503872bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowLogging: 0
+  objectToSetAsSelected: {fileID: 8471963578755998115}
+  selectedObjectRequestChannel: {fileID: 11400000, guid: ef2bbe5fd69021f45916f32f8bcc6744, type: 2}
 --- !u!1 &8471963579414699294
 GameObject:
   m_ObjectHideFlags: 0

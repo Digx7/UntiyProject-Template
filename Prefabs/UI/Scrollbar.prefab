@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 1642464732156325688}
   - component: {fileID: 1642464732156325695}
   - component: {fileID: 1642464732156325690}
+  - component: {fileID: 8479635683007533215}
   m_Layer: 0
   m_Name: Scrollbar
   m_TagString: Untagged
@@ -164,19 +165,7 @@ MonoBehaviour:
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: b77dad9ea04285c42bcce7bc072c0914, type: 2}
-        m_TargetAssemblyTypeName: AudioRequestChannelSO, Assembly-CSharp
-        m_MethodName: RaiseEvent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 293b3a71010f3a44b96dc3df1a832c34, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Sound, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1642464732156325690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +195,33 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 8479635683007533215}
+          m_TargetAssemblyTypeName: UISelectionHelper, Assembly-CSharp
+          m_MethodName: OnSelect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &8479635683007533215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642464732156325693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6028d315c5e09fa448409181503872bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLogging: 0
+  objectToSetAsSelected: {fileID: 1642464732156325693}
+  selectedObjectRequestChannel: {fileID: 11400000, guid: ef2bbe5fd69021f45916f32f8bcc6744, type: 2}
 --- !u!1 &1642464733035452465
 GameObject:
   m_ObjectHideFlags: 0

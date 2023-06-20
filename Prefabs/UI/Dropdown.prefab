@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 3906328250511361795}
   - component: {fileID: 3906328250511361794}
   - component: {fileID: 3499081064762203274}
+  - component: {fileID: 7335927054145554106}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -618,6 +619,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &7335927054145554106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906328250511361820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6028d315c5e09fa448409181503872bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLogging: 0
+  objectToSetAsSelected: {fileID: 3906328250511361820}
+  selectedObjectRequestChannel: {fileID: 11400000, guid: ef2bbe5fd69021f45916f32f8bcc6744, type: 2}
 --- !u!1 &3906328250662646548
 GameObject:
   m_ObjectHideFlags: 0

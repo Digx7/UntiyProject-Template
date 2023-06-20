@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4850758432332370279}
   - component: {fileID: 4850758432332370276}
   - component: {fileID: 4850758432332370277}
+  - component: {fileID: 8285987116678480307}
+  - component: {fileID: 4131695150246693716}
   m_Layer: 0
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -212,6 +214,50 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &8285987116678480307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4850758432332370283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4131695150246693716}
+          m_TargetAssemblyTypeName: UISelectionHelper, Assembly-CSharp
+          m_MethodName: OnSelect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &4131695150246693716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4850758432332370283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6028d315c5e09fa448409181503872bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLogging: 0
+  objectToSetAsSelected: {fileID: 4850758432332370283}
+  selectedObjectRequestChannel: {fileID: 11400000, guid: ef2bbe5fd69021f45916f32f8bcc6744, type: 2}
 --- !u!1 &4850758432731327155
 GameObject:
   m_ObjectHideFlags: 0
