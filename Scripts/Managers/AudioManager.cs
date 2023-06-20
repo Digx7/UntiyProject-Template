@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class AudioManager : Singleton<AudioManager>
@@ -8,7 +9,6 @@ public class AudioManager : Singleton<AudioManager>
     public AudioRequestChannelSO sfxChannel;
     public AudioRequestChannelSO musicChannel;
     public GameObject AudioSourcePrefab;
-
     private List<Sound> activeSfxs;
     private List<Sound> activeSongs;
 

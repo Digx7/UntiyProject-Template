@@ -34,20 +34,20 @@ public class MenuManager : CustomMonoBehaviorWrapper
         return menuScreens.Find(screen => screen.isStartingScreen == true);
     }
     
-    private MenuScreen currentScreen;
+    protected MenuScreen currentScreen;
 
     private void Start()
     {
         currentScreen = menuScreens[0];
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         uIRequestChannelSO.OnEventRaised += (state) => OnSelect(state);
         onBackRequestChannelSO.OnEventRaised += () => OnBack();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         uIRequestChannelSO.OnEventRaised -= (state) => OnSelect(state);
         onBackRequestChannelSO.OnEventRaised -= () => OnBack();
@@ -81,7 +81,7 @@ public class MenuManager : CustomMonoBehaviorWrapper
         }
     }
 
-    public void OnBack()
+    protected virtual void OnBack()
     {
         if(isOn)
         {
@@ -89,7 +89,7 @@ public class MenuManager : CustomMonoBehaviorWrapper
         }
     }
 
-    private void OnChangeScreen(MenuScreen newScreen)
+    protected void OnChangeScreen(MenuScreen newScreen)
     {
         Log("Changing screen: " + currentScreen.name + " -> " + newScreen.name);
         currentScreen.rootObject.SetActive(false);

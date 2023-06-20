@@ -49,6 +49,7 @@ MonoBehaviour:
   sfxChannel: {fileID: 11400000, guid: b77dad9ea04285c42bcce7bc072c0914, type: 2}
   musicChannel: {fileID: 11400000, guid: 7a4c3cf42a95fab44bce8e62213e95fd, type: 2}
   AudioSourcePrefab: {fileID: 1188185687180592740, guid: 4771b49c36af8f34fbfe3f7d3f6ee4f1, type: 3}
+  mixer: {fileID: 24100000, guid: 41110ee7c02ce5641ad7891838cb4de9, type: 2}
 --- !u!81 &5491204270579574142
 AudioListener:
   m_ObjectHideFlags: 0
