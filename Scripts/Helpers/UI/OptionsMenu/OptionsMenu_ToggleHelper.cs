@@ -11,7 +11,7 @@ public class OptionsMenu_ToggleHelper : CustomMonoBehaviorWrapper
     [SerializeField] private bool defaultValue;
     [SerializeField] private string key;
     [SerializeField] private BoolEventChannelSO settingsNeedToBeSavedChannel;
-    public UnityAction<bool> OnValueChanged;
+    public UnityEvent<bool> OnValueChanged;
     private Toggle toggle;
 
     public void OnUpdate(bool value)

@@ -3,7 +3,9 @@ guid: 0e9118420db12a1439eaf413e3aaae76
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audioMixerGroup: {instanceID: 0}
+  - savePlayerPrefsRequestChannelSO: {fileID: 11400000, guid: c4673b17269163742ab4a10580d8447b, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

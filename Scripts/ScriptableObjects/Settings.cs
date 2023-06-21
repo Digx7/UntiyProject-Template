@@ -22,19 +22,7 @@ public class Settings : ScriptableObject
 
 
     [Header("Video")]
-    public Resolutions resolution;
-    public WindowMode windowMode;
     public VideoQuality graphicsPreset;
-    public VideoQuality textureQuality;
-    public VideoQuality shadowsQuality;
-    public VideoQuality reflectionsQuality;
-    public VideoQuality effectsQuality;
-    public VideoQuality antiAliasingQuality;
-    public bool useVSync;
-    public VideoQuality fieldOfViewQuality;
-    public VideoQuality ambientOcclusionQuality;
-    public VideoQuality depthOfFieldQuality;
-    public float gamma;
 
 
     [Header("Gameplay")]
@@ -45,66 +33,41 @@ public class Settings : ScriptableObject
     public void Load()
     {
         // load audio
-        tryLoadFloat("Volume_Master", ref VolumeMaster);
-        tryLoadFloat("Volume_Music", ref VolumeMaster);
-        tryLoadFloat("Volume_Music", ref VolumeMusic);
-        tryLoadFloat("Volume_SFX", ref VolumeSFX);
-        tryLoadFloat("Volume_Dialouge", ref VolumeDialouge);
-        tryLoadFloat("Volume_Ambient", ref VolumeAmbient);
-        tryLoadBool("Show_Subtitles",ref ShowSubtitles);
-        tryLoadEnum<Languages>("SubtitleLangague",ref subtitleLanguage);
+        tryLoadFloat(SettingsConstants.VolumeMaster, ref VolumeMaster);
+        tryLoadFloat(SettingsConstants.VolumeMusic, ref VolumeMusic);
+        tryLoadFloat(SettingsConstants.VolumeSFX, ref VolumeSFX);
+        tryLoadFloat(SettingsConstants.VolumeDialouge, ref VolumeDialouge);
+        tryLoadFloat(SettingsConstants.VolumeAmbient, ref VolumeAmbient);
+        tryLoadBool(SettingsConstants.ShowSubtitles,ref ShowSubtitles);
+        tryLoadEnum<Languages>(SettingsConstants.SubtitleLangague,ref subtitleLanguage);
 
         // load video
-        tryLoadEnum<Resolutions>("Resolution", ref resolution);
-        tryLoadEnum<WindowMode>("Window_Mode",ref windowMode);
-        tryLoadEnum<VideoQuality>("Graphics_Preset",ref graphicsPreset);
-        tryLoadEnum<VideoQuality>("Graphics_texture",ref textureQuality);
-        tryLoadEnum<VideoQuality>("Graphics_shadow",ref shadowsQuality);
-        tryLoadEnum<VideoQuality>("Graphics_reflection",ref reflectionsQuality);
-        tryLoadEnum<VideoQuality>("Graphics_effects",ref effectsQuality);
-        tryLoadEnum<VideoQuality>("Graphics_anti_aliasing",ref antiAliasingQuality);
-        tryLoadBool("Graphics_V_Sync",ref useVSync);
-        tryLoadEnum<VideoQuality>("Graphics_field_of_view",ref fieldOfViewQuality);
-        tryLoadEnum<VideoQuality>("Graphics_ambient_occlusion",ref ambientOcclusionQuality);
-        tryLoadEnum<VideoQuality>("Graphics_depth_of_field",ref depthOfFieldQuality);
-        tryLoadFloat("Graphics_Gamma",ref gamma);
-
+        tryLoadEnum<VideoQuality>(SettingsConstants.GraphicsPreset,ref graphicsPreset);
+        
         // load gameplay
-        tryLoadEnum<Difficulty>("Gameplay_Difficulty",ref difficulty);
-        tryLoadBool("Gameplay_Show_Hints",ref showHints);
+        tryLoadEnum<Difficulty>(SettingsConstants.Difficulty,ref difficulty);
+        tryLoadBool(SettingsConstants.ShowHints,ref showHints);
 
     }
 
     public void Save()
     {
-        // saves the data into the PlayerPrefs;
-        saveFloat("Volume_Master",  VolumeMaster);
-        saveFloat("Volume_Music",  VolumeMaster);
-        saveFloat("Volume_Music",  VolumeMusic);
-        saveFloat("Volume_SFX",  VolumeSFX);
-        saveFloat("Volume_Dialouge",  VolumeDialouge);
-        saveFloat("Volume_Ambient",  VolumeAmbient);
-        saveBool("Show_Subtitles", ShowSubtitles);
-        saveEnum<Languages>("SubtitleLangague", subtitleLanguage);
+        // load audio
+        saveFloat(SettingsConstants.VolumeMaster,  VolumeMaster);
+        saveFloat(SettingsConstants.VolumeMusic,  VolumeMusic);
+        saveFloat(SettingsConstants.VolumeSFX,  VolumeSFX);
+        saveFloat(SettingsConstants.VolumeDialouge,  VolumeDialouge);
+        saveFloat(SettingsConstants.VolumeAmbient,  VolumeAmbient);
+        saveBool(SettingsConstants.ShowSubtitles, ShowSubtitles);
+        saveEnum<Languages>(SettingsConstants.SubtitleLangague, subtitleLanguage);
 
         // load video
-        saveEnum<Resolutions>("Resolution",  resolution);
-        saveEnum<WindowMode>("Window_Mode", windowMode);
-        saveEnum<VideoQuality>("Graphics_Preset", graphicsPreset);
-        saveEnum<VideoQuality>("Graphics_texture", textureQuality);
-        saveEnum<VideoQuality>("Graphics_shadow", shadowsQuality);
-        saveEnum<VideoQuality>("Graphics_reflection", reflectionsQuality);
-        saveEnum<VideoQuality>("Graphics_effects", effectsQuality);
-        saveEnum<VideoQuality>("Graphics_anti_aliasing", antiAliasingQuality);
-        saveBool("Graphics_V_Sync", useVSync);
-        saveEnum<VideoQuality>("Graphics_field_of_view", fieldOfViewQuality);
-        saveEnum<VideoQuality>("Graphics_ambient_occlusion", ambientOcclusionQuality);
-        saveEnum<VideoQuality>("Graphics_depth_of_field", depthOfFieldQuality);
-        saveFloat("Graphics_Gamma", gamma);
-
+        saveEnum<VideoQuality>(SettingsConstants.GraphicsPreset, graphicsPreset);
+        
         // load gameplay
-        saveEnum<Difficulty>("Gameplay_Difficulty", difficulty);
-        saveBool("Gameplay_Show_Hints", showHints);
+        saveEnum<Difficulty>(SettingsConstants.Difficulty, difficulty);
+        saveBool(SettingsConstants.ShowHints, showHints);
+        // rebuild
     }
 
     private void saveBool(string key, bool value)
@@ -176,7 +139,7 @@ public class Settings : ScriptableObject
         if(doesPlayerPrefsHaveKey(key))
         {
             value = (T) Convert.ChangeType(PlayerPrefs.GetInt(key), typeof(T));
-        }
+        } 
     }
 
     private void tryLoadString(string key, ref string value)

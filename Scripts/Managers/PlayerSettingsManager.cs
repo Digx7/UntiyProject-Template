@@ -5,7 +5,8 @@ using UnityEngine.Audio;
 
 public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
 {
-    public static Settings currentSettings;
+    public Settings currentSettings;
+    public AudioMixer audioMixer;
 
     [SerializeField] private bool loadFromPlayerPrefsOnStart;
     [SerializeField] private bool loadFromPlayerPrefsAfterSaving;
@@ -26,6 +27,7 @@ public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
         if(loadFromPlayerPrefsOnStart)
         {
             currentSettings.Load();
+            ApplyAllSettings();
         }
     }
 
@@ -41,5 +43,29 @@ public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
     {
         yield return new WaitForSeconds(seconds);
         currentSettings.Load();
+    }
+
+    private void ApplyAllSettings()
+    {
+        ApplyAudioSettings();
+        ApplyAllSettings();
+    }
+
+    private void ApplyAudioSettings()
+    {
+        audioMixer.SetFloat(SettingsConstants.VolumeMaster, currentSettings.VolumeMaster);
+        audioMixer.SetFloat(SettingsConstants.VolumeMusic, currentSettings.VolumeMaster);
+        audioMixer.SetFloat(SettingsConstants.VolumeSFX, currentSettings.VolumeMaster);
+        audioMixer.SetFloat(SettingsConstants.VolumeDialouge, currentSettings.VolumeMaster);
+        audioMixer.SetFloat(SettingsConstants.VolumeAmbient, currentSettings.VolumeMaster);
+
+        // add audio subtitles and subtitle language here
+
+    }
+
+    private void ApplyVideoSettings()
+    {
+        // Screen.SetResolution()
+        QualitySettings.SetQualityLevel( (int) currentSettings.graphicsPreset);
     }
 }

@@ -10,7 +10,7 @@ public class OptionsMenu_SliderHelper : CustomMonoBehaviorWrapper
     [SerializeField] private float defaultValue;
     [SerializeField] private string key;
     [SerializeField] private BoolEventChannelSO settingsNeedToBeSavedChannel;
-    public UnityAction<float> OnValueChanged;
+    public UnityEvent<float> OnValueChanged;
     private Slider slider;
 
     public void OnUpdate(float value)

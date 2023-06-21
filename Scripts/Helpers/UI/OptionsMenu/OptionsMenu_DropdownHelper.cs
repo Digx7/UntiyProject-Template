@@ -11,13 +11,13 @@ public class OptionsMenu_DropdownHelper : CustomMonoBehaviorWrapper
     [SerializeField] private int defaultValue;
     [SerializeField] private string key;
     [SerializeField] private BoolEventChannelSO settingsNeedToBeSavedChannel;
-    public UnityAction<int> OnValueChanged;
+    public UnityEvent<int> OnValueChanged;
     private TMP_Dropdown dropDown;
 
     public void OnUpdate(int value)
     {
         PlayerPrefs.SetInt(key, value);
-        OnValueChanged.Invoke(value);
+        if(value != null) OnValueChanged.Invoke(value);
         settingsNeedToBeSavedChannel.RaiseEvent(true);
     }
 
