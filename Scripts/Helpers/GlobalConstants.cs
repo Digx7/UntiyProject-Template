@@ -26,7 +26,8 @@ public static class SettingsConstants
     public static string ShowSubtitles = "ShowSubtitles";
     public static string SubtitleLangague = "SubtitleLangague";
 
-    public static string Resolution = "Resolution";
+    public static string ResolutionWidth = "ResolutionWidth";
+    public static string ResolutioinHeight = "ResolutionHeight";
     public static string WindowMode = "WindowMode";
     public static string GraphicsPreset = "GraphicsPreset";
 

@@ -19,7 +19,9 @@ MonoBehaviour:
   VolumeAmbient: 0
   ShowSubtitles: 0
   subtitleLanguage: 0
-  windowMode: 0
   graphicsPreset: 0
+  ScreenWidth: 1920
+  ScreenHeight: 1080
+  fullScreenMode: 0
   difficulty: 0
   showHints: 0

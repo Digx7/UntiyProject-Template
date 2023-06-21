@@ -23,7 +23,9 @@ public class Settings : ScriptableObject
 
     [Header("Video")]
     public VideoQuality graphicsPreset;
-
+    public int ScreenWidth;
+    public int ScreenHeight;
+    public FullScreenMode screenMode;
 
     [Header("Gameplay")]
     public Difficulty difficulty;
@@ -42,6 +44,9 @@ public class Settings : ScriptableObject
         tryLoadEnum<Languages>(SettingsConstants.SubtitleLangague,ref subtitleLanguage);
 
         // load video
+        tryLoadInt(SettingsConstants.ResolutionWidth,ref ScreenWidth);
+        tryLoadInt(SettingsConstants.ResolutioinHeight,ref ScreenHeight);
+        tryLoadEnum<FullScreenMode>(SettingsConstants.WindowMode,ref screenMode);
         tryLoadEnum<VideoQuality>(SettingsConstants.GraphicsPreset,ref graphicsPreset);
         
         // load gameplay
@@ -62,12 +67,14 @@ public class Settings : ScriptableObject
         saveEnum<Languages>(SettingsConstants.SubtitleLangague, subtitleLanguage);
 
         // load video
+        saveInt(SettingsConstants.ResolutionWidth, ScreenWidth);
+        saveInt(SettingsConstants.ResolutioinHeight, ScreenHeight);
+        saveEnum<FullScreenMode>(SettingsConstants.WindowMode, screenMode);
         saveEnum<VideoQuality>(SettingsConstants.GraphicsPreset, graphicsPreset);
         
         // load gameplay
         saveEnum<Difficulty>(SettingsConstants.Difficulty, difficulty);
         saveBool(SettingsConstants.ShowHints, showHints);
-        // rebuild
     }
 
     private void saveBool(string key, bool value)

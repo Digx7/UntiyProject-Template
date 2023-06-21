@@ -69,5 +69,6 @@ public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
     {
         // Screen.SetResolution()
         QualitySettings.SetQualityLevel( (int) currentSettings.graphicsPreset, true);
+        Screen.SetResolution(currentSettings.ScreenWidth, currentSettings.ScreenHeight, currentSettings.screenMode);
     }
 }
