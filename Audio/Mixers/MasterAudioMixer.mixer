@@ -102,15 +102,15 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: e42bf19f6bdeffa4d80f61c912095441
-    name: Volume_Ambient
+    name: VolumeAmbient
   - guid: 637b21335e6b70a47975f2b5d9ad566e
-    name: Volume_Dialouge
+    name: VolumeDialouge
   - guid: df534c93d5e9a224cb2adc22018fef19
-    name: Volume_Master
+    name: VolumeMaster
   - guid: b301f9c5000bd2248975ec0ad0f399ed
-    name: Volume_Music
+    name: VolumeMusic
   - guid: 9c21f9a29a9c19b45a6cac1d8326bd9b
-    name: Volume_SFX
+    name: VolumeSFX
   m_AudioMixerGroupViews:
   - guids:
     - 6657a01d50cd5d84cb3cb1a97600257c

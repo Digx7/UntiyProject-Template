@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using TMPro;
 
 [RequireComponent(typeof(TMP_Dropdown))]
-public class OptionsMenu_DropdownHelper : CustomMonoBehaviorWrapper
+public class OptionsMenu_DropdownHelper : CustomMonoBehaviorWrapper, ResetOptionInterface
 {
     [SerializeField] private int defaultValue;
     [SerializeField] private string key;
@@ -17,11 +17,11 @@ public class OptionsMenu_DropdownHelper : CustomMonoBehaviorWrapper
     public void OnUpdate(int value)
     {
         PlayerPrefs.SetInt(key, value);
-        if(value != null) OnValueChanged.Invoke(value);
+        OnValueChanged.Invoke(value);
         settingsNeedToBeSavedChannel.RaiseEvent(true);
     }
 
-    public void Reset()
+    public void Reset_Option()
     {
         OnUpdate(defaultValue);
         dropDown.value = defaultValue;
@@ -40,7 +40,7 @@ public class OptionsMenu_DropdownHelper : CustomMonoBehaviorWrapper
         }
         else
         {
-            Reset();
+            Reset_Option();
         }
     }
 

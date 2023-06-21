@@ -138,7 +138,7 @@ public class Settings : ScriptableObject
     {
         if(doesPlayerPrefsHaveKey(key))
         {
-            value = (T) Convert.ChangeType(PlayerPrefs.GetInt(key), typeof(T));
+            value = (T) Enum.ToObject(typeof(T), PlayerPrefs.GetInt(key));
         } 
     }
 

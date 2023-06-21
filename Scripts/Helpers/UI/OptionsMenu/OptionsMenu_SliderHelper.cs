@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Slider))]
-public class OptionsMenu_SliderHelper : CustomMonoBehaviorWrapper
+public class OptionsMenu_SliderHelper : CustomMonoBehaviorWrapper, ResetOptionInterface
 {
     [SerializeField] private float defaultValue;
     [SerializeField] private string key;
@@ -20,7 +20,7 @@ public class OptionsMenu_SliderHelper : CustomMonoBehaviorWrapper
         settingsNeedToBeSavedChannel.RaiseEvent(true);
     }
 
-    public void Reset()
+    public void Reset_Option()
     {
         OnUpdate(defaultValue);
         slider.SetValueWithoutNotify(defaultValue);
@@ -38,7 +38,7 @@ public class OptionsMenu_SliderHelper : CustomMonoBehaviorWrapper
         }
         else
         {
-            Reset();
+            Reset_Option();
         }
     }
 

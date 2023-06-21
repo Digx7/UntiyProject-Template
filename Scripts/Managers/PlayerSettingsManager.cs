@@ -27,7 +27,7 @@ public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
         if(loadFromPlayerPrefsOnStart)
         {
             currentSettings.Load();
-            ApplyAllSettings();
+            StartCoroutine(loadAfterDelay(0.1f));
         }
     }
 
@@ -35,7 +35,7 @@ public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
     {
         if(loadFromPlayerPrefsAfterSaving)
         {
-            StartCoroutine(loadAfterDelay(0.5f));
+            StartCoroutine(loadAfterDelay(0.1f));
         }
     }
 
@@ -43,21 +43,23 @@ public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
     {
         yield return new WaitForSeconds(seconds);
         currentSettings.Load();
+        yield return new WaitForSeconds(seconds);
+        ApplyAllSettings();
     }
 
     private void ApplyAllSettings()
     {
         ApplyAudioSettings();
-        ApplyAllSettings();
+        ApplyVideoSettings();
     }
 
     private void ApplyAudioSettings()
     {
         audioMixer.SetFloat(SettingsConstants.VolumeMaster, currentSettings.VolumeMaster);
-        audioMixer.SetFloat(SettingsConstants.VolumeMusic, currentSettings.VolumeMaster);
-        audioMixer.SetFloat(SettingsConstants.VolumeSFX, currentSettings.VolumeMaster);
-        audioMixer.SetFloat(SettingsConstants.VolumeDialouge, currentSettings.VolumeMaster);
-        audioMixer.SetFloat(SettingsConstants.VolumeAmbient, currentSettings.VolumeMaster);
+        audioMixer.SetFloat(SettingsConstants.VolumeMusic, currentSettings.VolumeMusic);
+        audioMixer.SetFloat(SettingsConstants.VolumeSFX, currentSettings.VolumeSFX);
+        audioMixer.SetFloat(SettingsConstants.VolumeDialouge, currentSettings.VolumeDialouge);
+        audioMixer.SetFloat(SettingsConstants.VolumeAmbient, currentSettings.VolumeAmbient);
 
         // add audio subtitles and subtitle language here
 
@@ -66,6 +68,6 @@ public class PlayerSettingsManager : Singleton<PlayerSettingsManager>
     private void ApplyVideoSettings()
     {
         // Screen.SetResolution()
-        QualitySettings.SetQualityLevel( (int) currentSettings.graphicsPreset);
+        QualitySettings.SetQualityLevel( (int) currentSettings.graphicsPreset, true);
     }
 }

@@ -8,6 +8,7 @@ public class OptionsMenuManager : MenuManager
     [SerializeField] private bool doPlayerPrefsNeedToBeSaved;
     [SerializeField] private BoolEventChannelSO doPlayerPrefsNeedToBeSavedChannel;
     [SerializeField] private VoidEventChannelSO saveChangesRequestChannel;
+    [SerializeField] private VoidEventChannelSO resetScreenRequestChannel;
 
     private MenuScreen previousScreen;
     
@@ -17,6 +18,7 @@ public class OptionsMenuManager : MenuManager
         base.OnEnable();
         doPlayerPrefsNeedToBeSavedChannel.OnEventRaised += (value) => doPlayerPrefsNeedToBeSaved = value;
         saveChangesRequestChannel.OnEventRaised += SavePlayerPrefs;
+        resetScreenRequestChannel.OnEventRaised += Reset;
     }
 
     protected override void OnDisable()
@@ -24,6 +26,7 @@ public class OptionsMenuManager : MenuManager
         base.OnDisable();
         doPlayerPrefsNeedToBeSavedChannel.OnEventRaised -= (value) => doPlayerPrefsNeedToBeSaved = value;
         saveChangesRequestChannel.OnEventRaised -= SavePlayerPrefs;
+        resetScreenRequestChannel.OnEventRaised -= Reset;
     }
 
     protected override void OnBack()
@@ -40,6 +43,20 @@ public class OptionsMenuManager : MenuManager
         {
             previousScreen = currentScreen;
             OnChangeScreen(ApplyChangesScreen);
+        }
+    }
+
+    private void Reset()
+    {
+        if(currentScreen.name == ApplyChangesScreen.name)
+        {
+            previousScreen.rootObject.SetActive(true);
+            previousScreen.rootObject.GetComponent<OptionsMenu_GroupHelper>().Reset_Option();
+            previousScreen.rootObject.SetActive(false);
+        }
+        else
+        {
+            currentScreen.rootObject.GetComponent<OptionsMenu_GroupHelper>().Reset_Option();
         }
     }
 

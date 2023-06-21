@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(Toggle))]
-public class OptionsMenu_ToggleHelper : CustomMonoBehaviorWrapper
+public class OptionsMenu_ToggleHelper : CustomMonoBehaviorWrapper, ResetOptionInterface
 {
     [SerializeField] private bool defaultValue;
     [SerializeField] private string key;
@@ -28,7 +28,7 @@ public class OptionsMenu_ToggleHelper : CustomMonoBehaviorWrapper
         settingsNeedToBeSavedChannel.RaiseEvent(true);
     }
 
-    public void Reset()
+    public void Reset_Option()
     {
         OnUpdate(defaultValue);
         toggle.isOn = defaultValue;
@@ -54,7 +54,7 @@ public class OptionsMenu_ToggleHelper : CustomMonoBehaviorWrapper
         }
         else
         {
-            Reset();
+            Reset_Option();
         }
     }
 
